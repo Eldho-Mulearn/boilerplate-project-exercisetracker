@@ -40,7 +40,7 @@ app.post('/api/users/:_id/exercises', async (req, res) => {
     date: req.body.date ? new Date(req.body.date) : new Date()
   });
   await exercise.save();
-  res.json(exercise);
+  res.json({_id: user._id, username: user.username, description: exercise.description, duration: exercise.duration, date: exercise.date.toDateString()});
 })
 app.get('/api/users/:_id/logs', async (req, res) => {
   const user = await userModel.findById(req.params._id);
